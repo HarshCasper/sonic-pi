@@ -99,16 +99,14 @@ module SonicPi
         "m7-5" => halfdim
       }
 
-      all_chords_lookup = all_chords.inject({}) do |res, chord_intervals|
+      all_chords_lookup = all_chords.each_with_object({}) do |chord_intervals, res|
         k, v = *chord_intervals
         res[k.to_sym] = v
-        res
       end
 
-      all_chords_names = all_chords.inject([]) do |res, chord_intervals|
+      all_chords_names = all_chords.each_with_object([]) do |chord_intervals, res|
         k, _v = *chord_intervals
         res << k.to_s
-        res
       end
 
       return all_chords, all_chords_lookup, all_chords_names.sort
